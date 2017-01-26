@@ -171,28 +171,5 @@ public class LinkedListTest {
 		System.out.println(end - start);
 	}*/
 	
-/*	@Test
-	public final void testRemoveLast() {
-		assertTrue(emptyList.isEmpty());
-		assertFalse(ListWithtenElement.isEmpty());
-	}
-	
-	@Test
-	public final void testGet() {
-		assertTrue(emptyList.isEmpty());
-		assertFalse(ListWithtenElement.isEmpty());
-	}
-	
-	@Test
-	public final void testCopy() {
-		assertTrue(emptyList.isEmpty());
-		assertFalse(ListWithtenElement.isEmpty());
-	}
-	
-	@Test
-	public final void testCopy2() {
-		assertTrue(emptyList.isEmpty());
-		assertFalse(ListWithtenElement.isEmpty());
-	}*/
 
 }
