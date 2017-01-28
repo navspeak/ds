@@ -10,7 +10,7 @@ public class LinkedList<T> implements Iterable<T>{
 	public LinkedList() {
 		this.head = null;
 	}
-	
+
 	// constructs a LinkedList with an array of elements
 	// for array [1,2,3,4,5] the list will be constructed as
 	// 5->4->3->2->1->null
@@ -18,7 +18,7 @@ public class LinkedList<T> implements Iterable<T>{
 		for (T data: array){
 			this.addFirst(data);
 		}
-		
+
 	}
 
 	// isEmpty
@@ -72,7 +72,7 @@ public class LinkedList<T> implements Iterable<T>{
 			ptr = ptr.next;
 		}
 		return ptr.data;
-			
+
 	}
 	// removeFirst
 	public T removeFirst(){
@@ -105,7 +105,7 @@ public class LinkedList<T> implements Iterable<T>{
 		}
 		throw new NoSuchElementException();
 	}
-	
+
 	//reverse
 	public LinkedList<T> reverse(){
 		LinkedList<T> twin = new LinkedList<T>();
@@ -125,7 +125,7 @@ public class LinkedList<T> implements Iterable<T>{
 		}
 
 	}
-	
+
 	// insertAfter
 	public void insertAfter(T key, T data){
 		for (Node<T> ptr = head; ptr!=null ; ptr = ptr.next){
@@ -159,16 +159,16 @@ public class LinkedList<T> implements Iterable<T>{
 		}
 		return twin;
 	}
-	
+
 	//copy
 	public LinkedList<T> copy3(){
 		LinkedList<T> twin = new LinkedList<T>();
 		for (Node<T> ptr = head; ptr!=null ; ptr = ptr.next)
 			//twin.addFirst(ptr.data); // O(n)
-		twin.addLast(ptr.data); //--> O(n2)
+			twin.addLast(ptr.data); //--> O(n2)
 		return twin;
 	}
-	
+
 	// Introduce loop in the LinkedList
 	public void introduceLoop(int loopIndex){
 		Node<T> ptr1 = head;
@@ -176,19 +176,41 @@ public class LinkedList<T> implements Iterable<T>{
 		for(int i = 0; i < loopIndex; i++) {
 			ptr1 = ptr1.next;
 		}
-		
+
 		for(ptr2 = head; ptr2.next !=null ; ptr2= ptr2.next);
-		
+
 		ptr2.next = ptr1;
 	}
-	
+
+	// getEndofLoop
+	public Node<T> getEndofLoop(){
+		if (isEmpty())
+			return null;
+		Node<T> hare = whereHareAndTortoiseMeet();
+		if (hare == null) // no loop
+			return null;
+		Node<T> tortoise = head;
+		while (tortoise.next != hare.next){ // where hare's next will meet the tortoise is the start of loop;
+			hare = hare.next;
+			tortoise = tortoise.next;
+		}
+		return hare; // tortoise will be at start of loop and hare at end
+	}
+
+	// removeLoop
+	public void removeLoop(){
+		Node<T> end = getEndofLoop();
+		if (end != null)
+			end.next = null;
+	}
+
 	// test loop
 	public boolean testLoop(){
 		if (isEmpty())
 			return false;
 		Node<T> tortoise = head;
 		Node<T> hare = head;
-		
+
 		while (hare != null && hare.next != null){
 			tortoise = tortoise.next;
 			hare  =  hare.next.next;
@@ -197,14 +219,30 @@ public class LinkedList<T> implements Iterable<T>{
 		}
 		return false;
 	}
-	
+
+	// test loop
+	public Node<T> whereHareAndTortoiseMeet(){
+		if (isEmpty())
+			return null;
+		Node<T> tortoise = head;
+		Node<T> hare = head;
+
+		while (hare != null && hare.next != null){
+			tortoise = tortoise.next;
+			hare  =  hare.next.next;
+			if (hare == tortoise)
+				return hare; // return where hare and tortoise meet
+		}
+		return null;
+	}
+
 	// find mid (second of two in case of even)
 	public T findMid(){
 		if (isEmpty())
 			throw new RuntimeException("Empty List");
 		Node<T> tortoise = head;
 		Node<T> hare = head;
-		
+
 		while (hare != null && hare.next != null){
 			tortoise = tortoise.next;
 			hare  =  hare.next.next;
@@ -227,9 +265,21 @@ public class LinkedList<T> implements Iterable<T>{
 
 	@Override
 	public String toString() {
-		if (this.testLoop())
-			throw new RuntimeException("Loop detected. toString will enter infinite loop");
 		StringBuilder sb = new StringBuilder();
+		// For Loop case
+		// ==========================
+		if (this.testLoop()) {
+			Node<T> endNode = getEndofLoop();
+			for(T data : this){
+				sb.append(data).append("->");
+				if (endNode.data.equals(data)){
+					sb.append("LOOP->");
+					sb.append(endNode.next.data);
+					return sb.toString();
+				}
+			}
+		}
+		// ==========================
 		for(T data : this){
 			sb.append(data).append("->");
 		}
@@ -293,27 +343,27 @@ public class LinkedList<T> implements Iterable<T>{
 		list2.addLast("5");
 
 		System.out.println(list2.toString());
-		
+
 		//reverse the list
 		System.out.println(list1.reverse());
-		
+
 		//reverse the list
 		System.out.println(list2.reverse());
-		
+
 		//copy the list
 		System.out.println(list1.copy());
 		System.out.println(list2.copy());
-		
+
 		//copy the list
 		System.out.println("Copy 2");
 		System.out.println(list1.copy2());
 		System.out.println(list2.copy2());
-		
+
 		//create a linked list
 		Integer[] array = (Integer[]) Arrays.asList(1,2,3,4,5).toArray();
 		LinkedList<Integer> list3 = new LinkedList<Integer>(array);
 		System.out.println(list3);
-		
+
 		// insert before
 		// 1->2->_->4->5->null
 		LinkedList<String> list4 = new LinkedList<String>();
@@ -323,7 +373,7 @@ public class LinkedList<T> implements Iterable<T>{
 		list4.addLast("5");
 		list4.insertBefore("4", "3");
 		System.out.println(list2);
-		
+
 		// insert After
 		// 1->2->3->_->5->null
 		LinkedList<String> list5 = new LinkedList<String>();
@@ -333,7 +383,7 @@ public class LinkedList<T> implements Iterable<T>{
 		list5.addLast("5");
 		list5.insertAfter("3", "4");
 		System.out.println(list5);
-		
+
 		//get
 		System.out.println(list1.get(0));
 		System.out.println(list1.get(1));

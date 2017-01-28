@@ -1,0 +1,11 @@
+Linked List
+===========
+XOR Linked List
+Sublist Search (Search a linked list in another list)
+Partitioning a linked list around a given value and keeping the original order
+Iteratively Reverse a linked list using only 2 pointers (An Interesting Method)
+Find pair for given sum in a sorted singly linked without extra space
+Find pairs with given sum in doubly linked list
+Unrolled Linked List | Set 1 (Introduction)
+Convert a Binary Tree to a Circular Doubly Link List
+Subtract Two Numbers represented as Linked Lists

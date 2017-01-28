@@ -122,6 +122,13 @@ public class LinkedListTest {
 		LinkedList<Integer> twinThreeList = ListWiththreeElement.copy();
 		twinThreeList.introduceLoop(1);
 		assertTrue(twinThreeList.testLoop());
+		twinThreeList.removeLoop();
+		twinThreeList.addFirst(7);
+		twinThreeList.addFirst(8);
+		twinThreeList.addFirst(9);
+		assertEquals("9->8->7->3->2->1->NULL", twinThreeList.toString());
+		twinThreeList.introduceLoop(3);
+		assertEquals("9->8->7->3->2->1->LOOP->3", twinThreeList.toString());
 	}
 	
 	@Test
@@ -131,17 +138,26 @@ public class LinkedListTest {
 		assertFalse(twinThreeList.testLoop());
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test
 	public final void testLoop3() {
 		LinkedList<Integer> twinThreeList = ListWiththreeElement.copy();
 		twinThreeList.introduceLoop(1);
-		twinThreeList.toString();
+		assertEquals("3->2->1->LOOP->2",twinThreeList.toString());
 	}
 	
 	@Test
 	public final void testLoop4() {
 		LinkedList<Integer> twinEmptyList = emptyList.copy();
 		assertFalse(twinEmptyList.testLoop());
+	}
+	
+	@Test
+	public final void testRemoveLoop() {
+		LinkedList<Integer> twinThreeList = ListWiththreeElement.copy();
+		twinThreeList.introduceLoop(1);
+		assertEquals("3->2->1->LOOP->2",twinThreeList.toString());
+		twinThreeList.removeLoop();
+		assertEquals("3->2->1->NULL",twinThreeList.toString());
 	}
 	
 	@Test
@@ -171,5 +187,28 @@ public class LinkedListTest {
 		System.out.println(end - start);
 	}*/
 	
+/*	@Test
+	public final void testRemoveLast() {
+		assertTrue(emptyList.isEmpty());
+		assertFalse(ListWithtenElement.isEmpty());
+	}
+	
+	@Test
+	public final void testGet() {
+		assertTrue(emptyList.isEmpty());
+		assertFalse(ListWithtenElement.isEmpty());
+	}
+	
+	@Test
+	public final void testCopy() {
+		assertTrue(emptyList.isEmpty());
+		assertFalse(ListWithtenElement.isEmpty());
+	}
+	
+	@Test
+	public final void testCopy2() {
+		assertTrue(emptyList.isEmpty());
+		assertFalse(ListWithtenElement.isEmpty());
+	}*/
 
 }
