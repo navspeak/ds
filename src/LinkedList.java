@@ -194,7 +194,7 @@ public class LinkedList<T> implements Iterable<T>{
 			hare = hare.next;
 			tortoise = tortoise.next;
 		}
-		return hare; // tortoise will be at start of loop and hare at end
+		return hare; 
 	}
 
 	// removeLoop
