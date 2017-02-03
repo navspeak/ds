@@ -41,6 +41,8 @@ public class FindSumInSubset {
 		// First column will have all false except for input[0][0] because empty set can't add up to any number > 0
 		// First row will have all true because an empty set can add up to zero
 		// Start from row = 1 and col = 1 matrix[row][col] = matrix[row -1][col] || matrix[row - 1][col - input[row - 1]]
+		
+		// Time and space Complexity : O(N*sum). Is solved by Dynamic programming and is has pseudo-polynomial time complexity
 
 		boolean [][] matrix = new boolean[input.length + 1][sum + 1]; 
 
@@ -71,7 +73,6 @@ public class FindSumInSubset {
 			}
 		}
 
-
 		boolean hasSubsetSum = matrix[input.length ][sum];
 		int row = input.length;
 		int col = sum;
@@ -92,5 +93,62 @@ public class FindSumInSubset {
         System.out.println("========================================");
 		return hasSubsetSum;
 
+		//Another variation is given an array is it possible to split it up into 2 equal
+		// sum partitions. Partition need not be equal sized. Just equal sum.
+		// in this case we calculate the sum of all the numbers in input. SUM = input[0] + input[1] +...+ input[n]
+		// if SUM % 2 ! = 0, equal sum partition is not possible
+		// Other wise return matrix[input.length][SUM/2]
+		
 	}
+	// Sample outputs:
+/*	========================================
+			Input : [1, 2, 4, 5, 9]
+
+			  1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+			  1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+			  1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 
+			  1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 
+			  1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 
+			  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+			15 : [9, 4, 2]
+			========================================
+			true
+			========================================
+			Input : [1, 2, 4, 5, 9]
+
+			  1 0 0 0 0 0 0 0 0 0 
+			  1 1 0 0 0 0 0 0 0 0 
+			  1 1 1 1 0 0 0 0 0 0 
+			  1 1 1 1 1 1 1 1 0 0 
+			  1 1 1 1 1 1 1 1 1 1 
+			  1 1 1 1 1 1 1 1 1 1 
+			9 : [5, 4]
+			========================================
+			true
+			========================================
+			Input : [3, 34, 4, 12, 5, 2]
+
+			  1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+			  1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 
+			  1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 
+			  1 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 
+			  1 0 0 1 1 0 0 1 0 0 0 0 1 0 0 1 
+			  1 0 0 1 1 1 0 1 1 1 0 0 1 0 0 1 
+			  1 0 1 1 1 1 1 1 1 1 1 1 1 0 1 1 
+			15 : [12, 3]
+			========================================
+			true
+			========================================
+			Input : [3, 34, 4, 12, 5, 2]
+
+			  1 0 0 0 0 0 0 0 0 
+			  1 0 0 1 0 0 0 0 0 
+			  1 0 0 1 0 0 0 0 0 
+			  1 0 0 1 1 0 0 1 0 
+			  1 0 0 1 1 0 0 1 0 
+			  1 0 0 1 1 1 0 1 1 
+			  1 0 1 1 1 1 1 1 1 
+			8 : [5, 3]
+			========================================*/
+
 }
