@@ -179,15 +179,15 @@ public class LinkedListTest {
 		twinEmptyList.findMid();
 	}
 	
-/*	@Test
+	/*	@Test
 	public final void testCopy3() {
 		Long start = System.currentTimeMillis();
 		LinkedList<Integer> twinList = ListWithTenThousandElement.copy3();
 		Long end = System.currentTimeMillis();
 		System.out.println(end - start);
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public final void testRemoveLast() {
 		assertTrue(emptyList.isEmpty());
 		assertFalse(ListWithtenElement.isEmpty());

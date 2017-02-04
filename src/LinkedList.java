@@ -190,9 +190,11 @@ public class LinkedList<T> implements Iterable<T>{
 		if (hare == null) // no loop
 			return null;
 		Node<T> tortoise = head;
-		while (tortoise.next != hare.next){ // where hare's next will meet the tortoise is the start of loop;
-			hare = hare.next;
+		while (true ){ // where hare's next will meet the tortoise is the start of loop;
+			if (tortoise.next == hare.next)
+				break;
 			tortoise = tortoise.next;
+			hare = hare.next;
 		}
 		return hare; 
 	}
@@ -211,7 +213,7 @@ public class LinkedList<T> implements Iterable<T>{
 		Node<T> tortoise = head;
 		Node<T> hare = head;
 
-		while (hare != null && hare.next != null){
+		while (tortoise !=null && hare != null && hare.next != null){
 			tortoise = tortoise.next;
 			hare  =  hare.next.next;
 			if (hare == tortoise)
@@ -227,7 +229,7 @@ public class LinkedList<T> implements Iterable<T>{
 		Node<T> tortoise = head;
 		Node<T> hare = head;
 
-		while (hare != null && hare.next != null){
+		while (tortoise != null && hare != null && hare.next != null){
 			tortoise = tortoise.next;
 			hare  =  hare.next.next;
 			if (hare == tortoise)
@@ -241,7 +243,7 @@ public class LinkedList<T> implements Iterable<T>{
 		if (isEmpty())
 			throw new RuntimeException("Empty List");
 		Node<T> tortoise = head;
-		Node<T> hare = head;
+		Node<T> hare = head; // if we keep it at head we get last of mid two or else last of mid two
 
 		while (hare != null && hare.next != null){
 			tortoise = tortoise.next;
@@ -252,7 +254,7 @@ public class LinkedList<T> implements Iterable<T>{
 		return tortoise.data;
 	}
 
-	private static class Node<T> {
+	public static class Node<T> {
 		T data;
 		Node<T> next;
 
