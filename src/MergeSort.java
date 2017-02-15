@@ -27,7 +27,7 @@ public class MergeSort {
 	private static void merge(int[] array, int[] temp, int leftStart, int rightEnd) {
 		int leftEnd = (leftStart + rightEnd)/2;
 		int rightStart = leftEnd + 1;
-		int size = rightEnd - leftEnd + 1;
+		int size = rightEnd - leftStart + 1;
 		
 		int left = leftStart;
 		int right = rightStart;
