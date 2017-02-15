@@ -10,4 +10,35 @@ Unrolled Linked List | Set 1 (Introduction)
 Convert a Binary Tree to a Circular Doubly Link List
 Subtract Two Numbers represented as Linked Lists
 
-Test
+===
+In an array having positive integers, except for one number which occurs odd number of times, all other numbers occur even number of times. Find the number. 
+Example -  
+Input : 2 5 9 1 5 1 8 2 8
+Output: 9
+
+Clue: a ^ a = 0 but 0 ^ a = a
+/* O(n) Time complexity, O(1) space */
+public void printOddOccurence(int[] a) {
+	int result = a[0];
+	for (int i = 1; i < a.length; i++) {
+		result = result ^ a[i]
+	}
+	sysout(result)
+}
+Other options: O(n) and O(n) space 
+	Map<Integer, Integer> map = new HashMap<>();
+	for (int i = 0; i < input.length; i++) {
+		if(map.containsKey(input[i])) 
+				  map.put(input[i], map.get(input[i]) + 1);
+		else
+					map.put(input[i], 1);
+    }
+
+	for(Entry<Integer, Integer> entry : map.entrySet()) {
+            if(entry.getValue() % 2 == 1) {
+	                System.out.println("Number occurring odd number of times is "  + entry.getKey());
+	                return;
+	            }
+	        }
+
+===
