@@ -6,6 +6,7 @@ import java.util.Arrays;
  * REMOVAL OF THE MAXIMUM ELEMENT IS DONE N TIMES,FOLLOWED BY HEAPIFY
  * INSERTION AND REMOVAL HAVE LOG N TIME COMPLEXITY SO DOING IT FOR N ELEMENTS MEANS:
  * O(NLOGN)
+ * NOT STABLE, NOT ADAPTIVE
  * @author knavneet
  *
  */
@@ -44,7 +45,8 @@ public class HeapSort {
 		//7, 35, 28, 26, 9, 12, 87
 	}
 
-    // Step 1: 
+    // Step 1: Heapify an Array
+	// Step 2. Remove Max Element, reduce array boundry and Heapify again (siftdown actually)
 	public static void heapsort(int [] arr){
 		int parentIndex = getParentIndex(arr.length - 1);
 		int endOfArray = arr.length - 1;
