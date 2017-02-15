@@ -42,8 +42,6 @@ After Heapify      : [7, 9, 9, 12, 26, 28, 35, 67, 87, 100, 111, 204]
 
 public class HeapSort {
 
-	static int indices[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
 	public static void main(String[] args) {
 		int arr [] = {12, 35, 87, 111, 26, 9, 28, 7, 100, 67, 9, 204};
 		System.out.println(Arrays.toString(arr));
