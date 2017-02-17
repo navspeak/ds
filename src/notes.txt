@@ -9,6 +9,11 @@ Find pairs with given sum in doubly linked list
 Unrolled Linked List | Set 1 (Introduction)
 Convert a Binary Tree to a Circular Doubly Link List
 Subtract Two Numbers represented as Linked Lists
+===
+What is a (contiguous) subarray?
+- All subsets with their indices in consecutive order are subarray.
+- No. of subsets (non contiguous subarrays) = 2^n
+- No. of contiguous subarray (with all distinct nos.) = nC0 + nC1 + .. nCn = n(n+1)/2
 
 ===
 In an array having positive integers, except for one number which occurs odd number of times, all other numbers occur even number of times. Find the number. 

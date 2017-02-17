@@ -23,7 +23,8 @@ public class MaxValueOfEachSubArray {
 	private static List<Integer> MaxValueOfEachSubArray(int[] arr, int size) {
 		Deque<Integer> list = new ArrayDeque<Integer>();
 		List<Integer> output = new ArrayList<Integer>();
-		// Step 1:
+		// Step 1: Adding indices to the list for first 'k' elements
+		// End of this step, the first of the list will contain max of first k elemens
 		for (int i = 0 ; i < size; i++){
 			//1.Remove unuseful element i.e if arr[i] > arr[list.getLast()]
 			//2. add i to list
@@ -31,13 +32,15 @@ public class MaxValueOfEachSubArray {
 				list.removeLast();
 			list.addLast(i);
 		}
-		// Step 2:	
+		// Step 2: Adding indices one by one to the list for rem. elems.
 		for (int i = size; i < arr.length; i++){
 			//1. Add list.front to the list
 			//2. Check if list.front belongs to the list
 			//3. check if arr[i] > list.end. If yes remove
 			//4. add i to list
 			output.add(arr[list.getFirst()]);
+			// for i = 5 and k =4 the current window will include
+			// indices 2,3,4,5, so remove if it doesn't belong
 			while (!list.isEmpty() && list.getFirst() < i -size + 1){
 				list.removeFirst();
 			}
