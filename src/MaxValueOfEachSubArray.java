@@ -11,6 +11,16 @@ import java.util.List;
 // Therefore, for every element of the array there are constant number of operations that are performed on it making time complexity as O(n). 
 // The extra space used by this algorithm is O(k). 
 
+// This can also be solved using AVL tree.
+//1. Create a BST from first 'k' elements of the input array.
+//2. Find node with maximum value from the BST created in step #1. Print this node's value. 
+//2. This would represent an element with maximum value from first sub-array of size 'k'.
+//4. Now starting from i = 0 upto i = n-k-1
+//    a. Search and delete element with value array[i] from the BST.
+//    b. Insert node with value as array[i+k] into the BST. Now this BST represents next sub-array of size 'k'.
+//    c. Find node with maximum value from the BST. Print this node's value.
+// Time Complexity is O(nlogk), n: size of input array, k: sub-array size
+// Space Complexity is O(k)
 
 public class MaxValueOfEachSubArray {
 
