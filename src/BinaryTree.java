@@ -1,8 +1,11 @@
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.SortedMap;
 
 // BST can get skewed and in that case it cause search to O(n)
-// Read about AVL trees - height balanced BST
+// Read about AVL trees - selfing balancing BST
+// Read about Red black tree - also selfing balancing BST (rotation is less restrictive)
+// E.g. of Red Black tree -TreeMap<K,V> and TreeSet<E>
 public class BinaryTree<T extends Comparable<T>> {
 	// https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html
 
