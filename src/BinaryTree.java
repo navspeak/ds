@@ -51,6 +51,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		print(head);
 		dfs(head.getLeftChild());
 		dfs(head.getRightChild());
+		//inorder - gives assending order for a BST
 	}
 	// sameTree
 	public boolean sameTree(Node<T> tree1, Node<T> tree2){
@@ -58,7 +59,6 @@ public class BinaryTree<T extends Comparable<T>> {
 		// if only one tree is null => return false
 
 		// Call sameTree recursively for tree1.getLeftChild(), tree2.getLeftChild()
-		// Call sameTree recursively for tree1.getRightChild(), tree2.getRightChild()
 
 		// Finally we will have leaf nodes, and we compare their data
 
@@ -125,6 +125,52 @@ public class BinaryTree<T extends Comparable<T>> {
 		Node<Integer> temp = head.getLeftChild();
 		head.setLeftChild(head.getLeftChild());
 		head.setRightChild(temp);
+	}
+
+	// delete
+	public static Node<Integer> delete(Node<Integer> node, Integer data){
+		if( node == null ) return node;
+		
+		if (data < node.getData()){
+			node.setLeftChild(delete(node.getLeftChild(), data));
+		} else if (data > node.getData()) {
+			node.setRightChild(delete(node.getRightChild(), data));		
+		} else {
+			
+			// we have found the node we want to remove !!!
+			if( node.getLeftChild() == null && node.getRightChild() == null ) {
+				System.out.println("Removing a leaf node...");
+				return null;
+			}
+			
+			if( node.getLeftChild() == null ) {
+				System.out.println("Removing the right child...");
+				Node<Integer> tempNode = node.getRightChild();
+				node = null;
+				return tempNode;
+			} else if( node.getRightChild() == null ) {
+				System.out.println("Removing the left child...");
+				Node<Integer> tempNode = node.getLeftChild();
+				node = null;
+				return tempNode;
+			}
+			
+			// this is the node with two children case !!!
+			System.out.println("Removing item with two children...");
+			Node<Integer> tempNode = getPredecessor(node.getLeftChild());
+			
+			node.setData(tempNode.getData());
+			node.setLeftChild( delete(node.getLeftChild(), tempNode.getData()) );
+		}
+		
+		return node;
+		
+	}
+	private static Node<Integer> getPredecessor(Node<Integer> node) {
+		if (node.getRightChild() != null){
+			return getPredecessor(node.getRightChild());
+		}
+		return node;
 	}
 
 	private void print(Node<T> node) {
