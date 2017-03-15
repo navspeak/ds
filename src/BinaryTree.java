@@ -2,6 +2,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.SortedMap;
 
+
 // BST can get skewed and in that case it cause search to O(n)
 // Read about AVL trees - selfing balancing BST
 // Read about Red black tree - also selfing balancing BST (rotation is less restrictive)
@@ -172,6 +173,46 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 		return node;
 	}
+	
+	   //LCA for generic binary tree (for BST it is simpler)
+    public static Node<Integer> LCA(Node<Integer> root, Node<Integer> a, Node<Integer> b ){
+		if (root == null) 
+			return root;
+		if (root == a || root == b)
+			return root;
+		Node<Integer> leftLCA = LCA(root.getLeftChild(), a, b);
+		Node<Integer> RightLCA = LCA(root.getRightChild(), a, b);
+		if (leftLCA != null && RightLCA != null)
+			return root;
+		if (leftLCA != null)
+			return root.getLeftChild();
+		else
+			return root.getRightChild();
+		
+		// If BST
+		// if (root > Max(a,b) return LCA(root.left, a, b)
+		// if (root < Min(a,b) return LCA(root.left, a, b)
+		// else return root
+    	
+    }
+    
+    // hasSum
+    public static boolean hasSum (Node<Integer> root,  int sum){
+    	if (root.getLeftChild() == null && root.getRightChild() == null)
+    		return sum == root.getData();
+    	int subsum = sum - root.getData();
+    	if (root.getLeftChild() != null){
+    		boolean hasSum = hasSum(root.getLeftChild(), subsum);
+    		if (hasSum == true)
+    			return true;
+    	}
+    	if (root.getRightChild() != null){
+    		boolean hasSum = hasSum(root.getRightChild(), subsum);
+    		if (hasSum == true)
+    			return true;
+    	}  
+    	return false;
+    }
 
 	private void print(Node<T> node) {
 		System.out.print(node.getData() + " -> ");
