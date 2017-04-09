@@ -224,6 +224,23 @@ public class BinaryTree<T extends Comparable<T>> {
 		return isBSTinRange(root.getLeftChild(), min, root.getData()) &&
 				isBSTinRange(root.getRightChild(), root.getData(), max);
 	 }
+	 
+	 //Create a balanced Binary Search Tree (BST) from a sorted array
+	 public static Node<Integer> createBST(int[] arr) {
+			int start = 0;
+			int end = arr.length - 1;
+			return createBST(arr, 0, end);
+			
+	 }
+	 
+	 private static Node<Integer> createBST(int[] arr, int start, int end) {
+			if (start > end) return null;
+			int mid = (start+end) / 2;
+			Node<Integer> root = new Node<>(arr[mid]);
+			root.setLeftChild(createBST(arr, start, mid - 1);
+			root.setRightChild(createBST(arr, mid - 1, end);
+			return root;
+	 }
 	
 	private void print(Node<T> node) {
 		System.out.print(node.getData() + " -> ");
