@@ -180,6 +180,10 @@ public class BinaryTree<T extends Comparable<T>> {
 			return root;
 		if (root == a || root == b) // comparator equates the node value
 			return root;
+		// assumes a and b are there in the tree. 
+        // if (root == a) containsA = true
+        // if (root == b) containsB = true	
+        // if containsA and containsB == true then only LCA makes sense.		
 		Node<Integer> leftLCA = LCA(root.getLeftChild(), a, b);
 		Node<Integer> RightLCA = LCA(root.getRightChild(), a, b);
 		if (leftLCA != null && RightLCA != null)
