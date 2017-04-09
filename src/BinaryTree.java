@@ -217,7 +217,14 @@ public class BinaryTree<T extends Comparable<T>> {
     	}  
     	return false;
     }
-
+	// isBSTinRange
+	 public static boolean isBSTinRange (Node<Integer> root,  int min, int max){
+		if (root == null) return true;
+		if (root.getData() <=min || root.getData() > max) return false;
+		return isBSTinRange(root.getLeftChild(), min, root.getData()) &&
+				isBSTinRange(root.getRightChild(), root.getData(), max);
+	 }
+	
 	private void print(Node<T> node) {
 		System.out.print(node.getData() + " -> ");
 	}
