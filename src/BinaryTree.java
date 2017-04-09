@@ -178,16 +178,16 @@ public class BinaryTree<T extends Comparable<T>> {
     public static Node<Integer> LCA(Node<Integer> root, Node<Integer> a, Node<Integer> b ){
 		if (root == null) 
 			return root;
-		if (root == a || root == b)
+		if (root == a || root == b) // comparator equates the node value
 			return root;
 		Node<Integer> leftLCA = LCA(root.getLeftChild(), a, b);
 		Node<Integer> RightLCA = LCA(root.getRightChild(), a, b);
 		if (leftLCA != null && RightLCA != null)
 			return root;
 		if (leftLCA != null)
-			return root.getLeftChild();
+			return leftLCA; //root.getLeftChild();
 		else
-			return root.getRightChild();
+			return rightLCA; //root.getRightChild();
 		
 		// If BST
 		// if (root > Max(a,b) return LCA(root.left, a, b)
