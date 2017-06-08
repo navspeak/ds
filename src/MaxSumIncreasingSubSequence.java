@@ -3,7 +3,7 @@ package com.nav.linear;
 import java.util.Arrays;
 
 public class MaxSumIncreasingSubSequence {
-//	
+//	Actual Array : [4, 6, 1, 3, 8, 4, 6]
 //			Init Max Sum Array : [4, 6, 1, 3, 8, 4, 6]
 //			Init Indices Array : [0, 1, 2, 3, 4, 5, 6]
 //			=======================
