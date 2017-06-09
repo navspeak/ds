@@ -5,6 +5,15 @@ import java.util.Collections;
 
 public class QuickSort {
 
+    /**
+	 * Quick sort
+	 * -------------
+	 * O(NlogN) - best  - partion is in the middle [n/2] p [n/2] or [n/2] p [n/2+/-1]
+	 * O(N2) - worst - [0] p [n]
+	 * Non-Adaptive
+	 * not stable sort
+	 * https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort
+	 */
 
 	public static void quicksort(int[] array){
 		quicksort(array, 0, array.length - 1);
