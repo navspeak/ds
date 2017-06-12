@@ -112,7 +112,7 @@ public class SkylineDrawing {
     }
     
     public static void main(String[] args) {
-    	int [][] buildings = {{1,3,4},{3,4,4},{2,6,2},{8,11,4}, {7,9,3},{10,11,2}};
+    	int [][] buildings = {{1,3,4},{3,4,4},{2,6,2},{8,11,4}, {7,9,3},{10,11,2}}; //x1,x2,y
     	SkylineDrawing sd = new SkylineDrawing();
         List<int[]> criticalPoints = sd.getSkyline(buildings);
         criticalPoints.stream().forEach(cp -> System.out.println(cp[0] + " " + cp[1]));

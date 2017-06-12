@@ -4,7 +4,8 @@ import com.progress.common.property.MergeUtility.createGroupException;
 
 
 public class SubString {
-	
+// Runtime complexity - O(m + n) where m is length of text and n is length of pattern
+// Space complexity - O(n)
 	public static void main(String[] args) {
 		String text = "abcabytttabxyabcabcabydrybh";
 		String pattern = "abcaby";
@@ -16,21 +17,31 @@ public class SubString {
 	
 	static class KMP{
 		/**
-		 * 
+		 * Time/space complexity is O(size of pattern)
 		 * @param pattern
 		 * @return
 		 */
 		int[] createLPSTable(char [] pattern) {
+		    // [0|1|2|3|4|5|6|7]
+			//  a|b|c|d|a|b|c|a <= Arr
+			// [0|0|0|0|1|2|3|1] <= LPS
+			// start with index = 0 and i = 1
+			// Is arr[i] == arr[index] (b == a)
+			// YES :
+			//      lps[i] = index + 1; index++; i++
+			// No - 
+			//       index = lps[index -1]
+			//       (Handles is index = 0, lps[i] = 0, i++
 			int[] lps = new int[pattern.length];
-			int j = 0;
+			int index = 0;
 			for(int i = 1; i < pattern.length; ) {
-				if (pattern[i] == pattern[j]) {
-					lps[i] = j + 1;
+				if (pattern[i] == pattern[index]) {
+					lps[i] = index + 1;
 					i++;
-					j++;
+					index++;
 				} else {
-					if (j != 0){
-						j = lps[j - 1];
+					if (index != 0){
+						index = lps[index - 1];
 					} else {
 						lps[i] = 0;
 						i++;
