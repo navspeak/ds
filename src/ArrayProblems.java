@@ -1,5 +1,7 @@
 import java.util.Arrays;
 
+// subarray is contiguous
+// subsequence is not contiguous
 
 public class ArrayProblems {
 	
@@ -22,12 +24,13 @@ public class ArrayProblems {
 
 
 // Kadane's algo
+//Brute force - O(n^2 * n) = O(n^2) for creating a subarray and n for traversing each of then
 	public static int findMaxSubArraySum(int[] arr){
 		
 		int curr_max = arr[0];
 		int global_max = arr[0];
 		
-		for (int i = 0; i < arr.length; i++){
+		for (int i = 1; i < arr.length; i++){
 			curr_max = Math.max(arr[i], curr_max + arr[i]);
 			global_max = Math.max(global_max, curr_max);
 		}
