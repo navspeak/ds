@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Customer implements DomainObject {
@@ -14,9 +15,12 @@ public class Customer implements DomainObject {
 	private Integer id;
 	@Version
     private Integer version;
+	@NotNull
     private String firstName;
     private String lastName;
+	@NotNull
     private String email;
+	@NotNull
     private String phoneNumber;
     private String addressLine1;
     private String addressLine2;
